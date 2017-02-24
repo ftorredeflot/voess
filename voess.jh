@@ -11,24 +11,24 @@ entity Video{
     videoDate ZonedDateTime ,
     videoViewerCount Integer ,
     videoViewerCountLive Integer ,
-    videoUrl String ,    
+    videoUrl String ,
 	videoPicks Integer ,
-    videoGameStart Integer 
-    
+    videoGameStart Integer
+
    	}
-    
+
 entity Team {
 
 	teamName String,
     teamAvatar ImageBlob,
-    teamWin Integer  
+    teamWin Integer
 }
-  
+
 entity Tournament{
 tournamentName String,
 tournamentDate ZonedDateTime,
-tournamentImage ImageBlob 
-}  
+tournamentImage ImageBlob
+}
 
 entity Player{
  playerName String,
@@ -58,28 +58,28 @@ MALE, FEMALE, OTHER, ALIEN
 }
 /**entidades asocitivas **/
 entity Friendship {
-	startDateTime ZonedDateTime required,
-    finishDateTime ZonedDateTime required
+	startDateTime ZonedDateTime,
+    finishDateTime ZonedDateTime
     }
-    
+
 entity UserLikedVideo {
-startDateTime ZonedDateTime required,
+startDateTime ZonedDateTime,
 userLiked Boolean required
 }
- 
+
  entity UserLikedPlayer {
-startDateTime ZonedDateTime required,
+startDateTime ZonedDateTime,
 userLiked Boolean required
 }
 
 entity UserLikedTeams {
-startDateTime ZonedDateTime required,
+startDateTime ZonedDateTime,
 userLiked Boolean required
 }
 
 entity TeamFormer{
 	startDateTime ZonedDateTime,
-    finshDateTime ZonedDateTime 
+    finshDateTime ZonedDateTime
 }
 /**Relaciones**/
 /**relaciones amistat**/
@@ -130,11 +130,11 @@ relationship ManyToMany {
 }
 
 relationship ManyToOne {
-Player{country(countryName)} to Country{player} 
+Player{country(countryName)} to Country{player}
 }
 
 relationship ManyToOne{
-Video{tournament(tournamentName)} to Tournament{video} 
+Video{tournament(tournamentName)} to Tournament{video}
 }
 
 relationship OneToOne{
