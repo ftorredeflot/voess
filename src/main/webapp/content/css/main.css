@@ -374,3 +374,17 @@ Social Buttons
 }
 
 /* jhipster-needle-css-add-main JHipster will add new css style */
+
+/*=====================================================================
+Ediciones varias
+======================================================================*/
+.btn-block {
+    width: 50%;
+    min-width:250px;
+}
+
+@media screen and (max-width: 991px) {
+    .btn-block {
+        width: 100%;
+    }
+}
