@@ -1,0 +1,32 @@
+
+<div>
+    <h2><span data-translate="voessApp.country.detail.title">Country</span> {{vm.country.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="voessApp.country.countryName">Country Name</span></dt>
+        <dd>
+            <span>{{vm.country.countryName}}</span>
+        </dd>
+        <dt><span data-translate="voessApp.country.coutryFlag">Coutry Flag</span></dt>
+        <dd>
+            <div ng-if="vm.country.coutryFlag">
+                <a ng-click="vm.openFile(vm.country.coutryFlagContentType, vm.country.coutryFlag)">
+                    <img data-ng-src="{{'data:' + vm.country.coutryFlagContentType + ';base64,' + vm.country.coutryFlag}}" style="max-width: 100%;" alt="country image"/>
+                </a>
+                {{vm.country.coutryFlagContentType}}, {{vm.byteSize(vm.country.coutryFlag)}}
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="countryvoess-detail.edit({id:vm.country.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

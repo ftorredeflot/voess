@@ -1,0 +1,28 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "video",
+            "otherEntityName": "video",
+            "otherEntityRelationshipName": "game"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "gameName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "gamePicture",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "changelogDate": "20170224165202",
+    "entityTableName": "game",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "angularJSSuffix": "voess"
+}

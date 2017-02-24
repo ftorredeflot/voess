@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity Video.
+    -->
+    <changeSet id="20170224165257-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="game_id"
+                                 baseTableName="video"
+                                 constraintName="fk_video_game_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="game"/>
+
+        <addForeignKeyConstraint baseColumnNames="team1_id"
+                                 baseTableName="video"
+                                 constraintName="fk_video_team1_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="team"/>
+
+        <addForeignKeyConstraint baseColumnNames="team2_id"
+                                 baseTableName="video"
+                                 constraintName="fk_video_team2_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="team"/>
+
+        <addForeignKeyConstraint baseColumnNames="tournament_id"
+                                 baseTableName="video"
+                                 constraintName="fk_video_tournament_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tournament"/>
+
+        <addForeignKeyConstraint baseColumnNames="videos_id"
+                                 baseTableName="video_player"
+                                 constraintName="fk_video_player_videos_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="video"/>
+        <addForeignKeyConstraint baseColumnNames="players_id"
+                                 baseTableName="video_player"
+                                 constraintName="fk_video_player_players_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="player"/>
+        
+    </changeSet>
+</databaseChangeLog>

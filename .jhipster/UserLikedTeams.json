@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "login"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "team",
+            "otherEntityName": "team",
+            "otherEntityField": "teamName"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "startDateTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "userLiked",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20170224165206",
+    "entityTableName": "user_liked_teams",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "angularJSSuffix": "voess"
+}

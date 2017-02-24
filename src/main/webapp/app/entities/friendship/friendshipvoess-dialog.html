@@ -1,0 +1,58 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myFriendshipLabel" data-translate="voessApp.friendship.home.createOrEditLabel">Create or edit a Friendship</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.friendship.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.friendship.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="voessApp.friendship.startDateTime" for="field_startDateTime">Start Date Time</label>
+                <div class="input-group">
+                    <input id="field_startDateTime" type="text" class="form-control" name="startDateTime" datetime-picker="{{dateformat}}" ng-model="vm.friendship.startDateTime" is-open="vm.datePickerOpenStatus.startDateTime"
+                      />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('startDateTime')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="voessApp.friendship.finishDateTime" for="field_finishDateTime">Finish Date Time</label>
+                <div class="input-group">
+                    <input id="field_finishDateTime" type="text" class="form-control" name="finishDateTime" datetime-picker="{{dateformat}}" ng-model="vm.friendship.finishDateTime" is-open="vm.datePickerOpenStatus.finishDateTime"
+                      />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('finishDateTime')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="voessApp.friendship.frienshipFrom" for="field_frienshipFrom">Frienship From</label>
+            <select class="form-control" id="field_frienshipFrom" name="frienshipFrom" ng-model="vm.friendship.frienshipFrom" ng-options="user as user.login for user in vm.users track by user.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="voessApp.friendship.frienshipTo" for="field_frienshipTo">Frienship To</label>
+            <select class="form-control" id="field_frienshipTo" name="frienshipTo" ng-model="vm.friendship.frienshipTo" ng-options="user as user.login for user in vm.users track by user.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

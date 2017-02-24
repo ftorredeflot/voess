@@ -1,0 +1,46 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "userExt"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "userAge",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "userSex",
+            "fieldType": "SexGender",
+            "fieldValues": "MALE,FEMALE,OTHER,ALIEN",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "userImage",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image",
+            "fieldValidateRules": [
+                "required",
+                "maxbytes"
+            ],
+            "fieldValidateRulesMaxbytes": 5242880
+        }
+    ],
+    "changelogDate": "20170224165256",
+    "entityTableName": "user_ext",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "angularJSSuffix": "voess"
+}

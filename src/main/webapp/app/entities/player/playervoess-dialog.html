@@ -1,0 +1,93 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPlayerLabel" data-translate="voessApp.player.home.createOrEditLabel">Create or edit a Player</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.player.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.player.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="voessApp.player.playerName" for="field_playerName">Player Name</label>
+            <input type="text" class="form-control" name="playerName" id="field_playerName"
+                    ng-model="vm.player.playerName"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="voessApp.player.playerLastName" for="field_playerLastName">Player Last Name</label>
+            <input type="text" class="form-control" name="playerLastName" id="field_playerLastName"
+                    ng-model="vm.player.playerLastName"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="voessApp.player.playerNick" for="field_playerNick">Player Nick</label>
+            <input type="text" class="form-control" name="playerNick" id="field_playerNick"
+                    ng-model="vm.player.playerNick"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="voessApp.player.playerAge" for="field_playerAge">Player Age</label>
+            <input type="number" class="form-control" name="playerAge" id="field_playerAge"
+                    ng-model="vm.player.playerAge"
+                     />
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setPlayerImage($file, vm.player)" ngf-pattern="'image/*'">
+            <label class="control-label" data-translate="voessApp.player.playerImage" for="field_playerImage">Player Image</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.player.playerImageContentType + ';base64,' + vm.player.playerImage}}" style="max-height: 100px;" ng-if="vm.player.playerImage" alt="player image"/>
+                <div ng-if="vm.player.playerImage" class="help-block clearfix">
+                    <span class="pull-left">{{vm.player.playerImageContentType}}, {{vm.byteSize(vm.player.playerImage)}}</span>
+                    <button type="button" ng-click="vm.player.playerImage=null;vm.player.playerImageContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setPlayerImage($file, vm.player)" accept="image/*" data-translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="playerImage" id="field_playerImage"
+                    ng-model="vm.player.playerImage"
+                     />
+            <input type="hidden" class="form-control" name="playerImageContentType" id="field_playerImageContentType"
+                    ng-model="vm.player.playerImageContentType" />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="voessApp.player.playerSex" for="field_playerSex">Player Sex</label>
+            <select class="form-control" name="playerSex" ng-model="vm.player.playerSex" id="field_playerSex">
+                <option value="MALE" data-translate="voessApp.SexGender.MALE">MALE</option>
+                <option value="FEMALE" data-translate="voessApp.SexGender.FEMALE">FEMALE</option>
+                <option value="OTHER" data-translate="voessApp.SexGender.OTHER">OTHER</option>
+                <option value="ALIEN" data-translate="voessApp.SexGender.ALIEN">ALIEN</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="voessApp.player.playerScore" for="field_playerScore">Player Score</label>
+            <input type="number" class="form-control" name="playerScore" id="field_playerScore"
+                    ng-model="vm.player.playerScore"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label data-translate="voessApp.player.country" for="field_country">Country</label>
+            <select class="form-control" id="field_country" name="country" ng-model="vm.player.country" ng-options="country as country.countryName for country in vm.countries track by country.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

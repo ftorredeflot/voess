@@ -1,0 +1,66 @@
+<div>
+    <h2 data-translate="voessApp.userLikedVideo.home.title">User Liked Videos</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="user-liked-videovoess.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="voessApp.userLikedVideo.home.createLabel">
+                        Create new User Liked Video
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="startDateTime"><span data-translate="voessApp.userLikedVideo.startDateTime">Start Date Time</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="userLiked"><span data-translate="voessApp.userLikedVideo.userLiked">User Liked</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="user.login"><span data-translate="voessApp.userLikedVideo.user">User</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="video.videoName"><span data-translate="voessApp.userLikedVideo.video">Video</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+                <tr ng-repeat="userLikedVideo in vm.userLikedVideos track by userLikedVideo.id">
+                    <td><a ui-sref="user-liked-videovoess-detail({id:userLikedVideo.id})">{{userLikedVideo.id}}</a></td>
+                    <td>{{userLikedVideo.startDateTime | date:'medium'}}</td>
+                    <td>{{userLikedVideo.userLiked}}</td>
+                    <td>
+                        {{userLikedVideo.user.login}}
+                    </td>
+                    <td>
+                        <a ui-sref="videovoess-detail({id:userLikedVideo.video.id})">{{userLikedVideo.video.videoName}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="user-liked-videovoess-detail({id:userLikedVideo.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="user-liked-videovoess.edit({id:userLikedVideo.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="user-liked-videovoess.delete({id:userLikedVideo.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

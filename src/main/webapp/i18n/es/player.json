@@ -1,0 +1,30 @@
+{
+    "voessApp": {
+        "player" : {
+            "home": {
+                "title": "Players",
+                "createLabel": "Crear nuevo Player",
+                "createOrEditLabel": "Crear o editar Player",
+                "search": "Search for Player"
+            },
+            "created": "Un nuevo Player ha sido creado con el identificador {{ param }}",
+            "updated": "Un Player ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Player ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Player {{ id }}?"
+            },
+            "detail": {
+                "title": "Player"
+            },
+            "playerName": "Player Name",
+            "playerLastName": "Player Last Name",
+            "playerNick": "Player Nick",
+            "playerAge": "Player Age",
+            "playerImage": "Player Image",
+            "playerSex": "Player Sex",
+            "playerScore": "Player Score",
+            "country": "Country",
+            "video": "Video"
+        }
+    }
+}

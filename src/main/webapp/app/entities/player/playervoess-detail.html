@@ -1,0 +1,56 @@
+
+<div>
+    <h2><span data-translate="voessApp.player.detail.title">Player</span> {{vm.player.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="voessApp.player.playerName">Player Name</span></dt>
+        <dd>
+            <span>{{vm.player.playerName}}</span>
+        </dd>
+        <dt><span data-translate="voessApp.player.playerLastName">Player Last Name</span></dt>
+        <dd>
+            <span>{{vm.player.playerLastName}}</span>
+        </dd>
+        <dt><span data-translate="voessApp.player.playerNick">Player Nick</span></dt>
+        <dd>
+            <span>{{vm.player.playerNick}}</span>
+        </dd>
+        <dt><span data-translate="voessApp.player.playerAge">Player Age</span></dt>
+        <dd>
+            <span>{{vm.player.playerAge}}</span>
+        </dd>
+        <dt><span data-translate="voessApp.player.playerImage">Player Image</span></dt>
+        <dd>
+            <div ng-if="vm.player.playerImage">
+                <a ng-click="vm.openFile(vm.player.playerImageContentType, vm.player.playerImage)">
+                    <img data-ng-src="{{'data:' + vm.player.playerImageContentType + ';base64,' + vm.player.playerImage}}" style="max-width: 100%;" alt="player image"/>
+                </a>
+                {{vm.player.playerImageContentType}}, {{vm.byteSize(vm.player.playerImage)}}
+            </div>
+        </dd>
+        <dt><span data-translate="voessApp.player.playerSex">Player Sex</span></dt>
+        <dd>
+            <span data-translate="{{'voessApp.SexGender.' + vm.player.playerSex}}">{{vm.player.playerSex}}</span>
+        </dd>
+        <dt><span data-translate="voessApp.player.playerScore">Player Score</span></dt>
+        <dd>
+            <span>{{vm.player.playerScore}}</span>
+        </dd>
+        <dt><span data-translate="voessApp.player.country">Country</span></dt>
+        <dd>
+            <a ui-sref="countryvoess-detail({id:vm.player.country.id})">{{vm.player.country.countryName}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="playervoess-detail.edit({id:vm.player.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

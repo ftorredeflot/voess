@@ -1,0 +1,25 @@
+{
+    "voessApp": {
+        "userLikedTeams" : {
+            "home": {
+                "title": "User Liked Teams",
+                "createLabel": "Crear nuevo User Liked Teams",
+                "createOrEditLabel": "Crear o editar User Liked Teams",
+                "search": "Search for User Liked Teams"
+            },
+            "created": "Un nuevo User Liked Teams ha sido creado con el identificador {{ param }}",
+            "updated": "Un User Liked Teams ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un User Liked Teams ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar User Liked Teams {{ id }}?"
+            },
+            "detail": {
+                "title": "User Liked Teams"
+            },
+            "startDateTime": "Start Date Time",
+            "userLiked": "User Liked",
+            "user": "User",
+            "team": "Team"
+        }
+    }
+}

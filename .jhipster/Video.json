@@ -1,0 +1,77 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "game",
+            "otherEntityName": "game",
+            "otherEntityField": "gameName"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "team1",
+            "otherEntityName": "team",
+            "otherEntityField": "teamName"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "team2",
+            "otherEntityName": "team",
+            "otherEntityField": "teamName"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "tournament",
+            "otherEntityName": "tournament",
+            "otherEntityField": "tournamentName"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "video",
+            "relationshipName": "player",
+            "otherEntityName": "player",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "videoName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "videoDuration",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "videoDate",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "videoViewerCount",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "videoViewerCountLive",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "videoUrl",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "videoPicks",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "videoGameStart",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20170224165257",
+    "entityTableName": "video",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "angularJSSuffix": "voess"
+}

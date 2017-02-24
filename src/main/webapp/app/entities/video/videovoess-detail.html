@@ -1,0 +1,73 @@
+
+<div>
+    <h2><span data-translate="voessApp.video.detail.title">Video</span> {{vm.video.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="voessApp.video.videoName">Video Name</span></dt>
+        <dd>
+            <span>{{vm.video.videoName}}</span>
+        </dd>
+        <dt><span data-translate="voessApp.video.videoDuration">Video Duration</span></dt>
+        <dd>
+            <span>{{vm.video.videoDuration}}</span>
+        </dd>
+        <dt><span data-translate="voessApp.video.videoDate">Video Date</span></dt>
+        <dd>
+            <span>{{vm.video.videoDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="voessApp.video.videoViewerCount">Video Viewer Count</span></dt>
+        <dd>
+            <span>{{vm.video.videoViewerCount}}</span>
+        </dd>
+        <dt><span data-translate="voessApp.video.videoViewerCountLive">Video Viewer Count Live</span></dt>
+        <dd>
+            <span>{{vm.video.videoViewerCountLive}}</span>
+        </dd>
+        <dt><span data-translate="voessApp.video.videoUrl">Video Url</span></dt>
+        <dd>
+            <span>{{vm.video.videoUrl}}</span>
+        </dd>
+        <dt><span data-translate="voessApp.video.videoPicks">Video Picks</span></dt>
+        <dd>
+            <span>{{vm.video.videoPicks}}</span>
+        </dd>
+        <dt><span data-translate="voessApp.video.videoGameStart">Video Game Start</span></dt>
+        <dd>
+            <span>{{vm.video.videoGameStart}}</span>
+        </dd>
+        <dt><span data-translate="voessApp.video.game">Game</span></dt>
+        <dd>
+            <a ui-sref="gamevoess-detail({id:vm.video.game.id})">{{vm.video.game.gameName}}</a>
+        </dd>
+        <dt><span data-translate="voessApp.video.team1">Team 1</span></dt>
+        <dd>
+            <a ui-sref="teamvoess-detail({id:vm.video.team1.id})">{{vm.video.team1.teamName}}</a>
+        </dd>
+        <dt><span data-translate="voessApp.video.team2">Team 2</span></dt>
+        <dd>
+            <a ui-sref="teamvoess-detail({id:vm.video.team2.id})">{{vm.video.team2.teamName}}</a>
+        </dd>
+        <dt><span data-translate="voessApp.video.tournament">Tournament</span></dt>
+        <dd>
+            <a ui-sref="tournamentvoess-detail({id:vm.video.tournament.id})">{{vm.video.tournament.tournamentName}}</a>
+        </dd>
+        <dt><span data-translate="voessApp.video.player">Player</span></dt>
+        <dd>
+            <span ng-repeat="player in vm.video.players">
+                <a ui-sref="playervoess-detail({id: player.id})">{{player.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="videovoess-detail.edit({id:vm.video.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

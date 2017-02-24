@@ -1,0 +1,45 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "t1video",
+            "otherEntityName": "video",
+            "otherEntityRelationshipName": "team1"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "t2video",
+            "otherEntityName": "video",
+            "otherEntityRelationshipName": "team2"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "tournamentName",
+            "otherEntityName": "tournament",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "teamName"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "teamName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "teamAvatar",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "teamWin",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20170224165258",
+    "entityTableName": "team",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "angularJSSuffix": "voess"
+}

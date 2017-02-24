@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span data-translate="voessApp.teamFormer.detail.title">Team Former</span> {{vm.teamFormer.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="voessApp.teamFormer.startDateTime">Start Date Time</span></dt>
+        <dd>
+            <span>{{vm.teamFormer.startDateTime | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="voessApp.teamFormer.finshDateTime">Finsh Date Time</span></dt>
+        <dd>
+            <span>{{vm.teamFormer.finshDateTime | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="voessApp.teamFormer.player">Player</span></dt>
+        <dd>
+            <a ui-sref="playervoess-detail({id:vm.teamFormer.player.id})">{{vm.teamFormer.player.playerName}}</a>
+        </dd>
+        <dt><span data-translate="voessApp.teamFormer.team">Team</span></dt>
+        <dd>
+            <a ui-sref="teamvoess-detail({id:vm.teamFormer.team.id})">{{vm.teamFormer.team.teamName}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="team-formervoess-detail.edit({id:vm.teamFormer.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

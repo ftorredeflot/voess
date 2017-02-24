@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span data-translate="voessApp.friendship.detail.title">Friendship</span> {{vm.friendship.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="voessApp.friendship.startDateTime">Start Date Time</span></dt>
+        <dd>
+            <span>{{vm.friendship.startDateTime | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="voessApp.friendship.finishDateTime">Finish Date Time</span></dt>
+        <dd>
+            <span>{{vm.friendship.finishDateTime | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="voessApp.friendship.frienshipFrom">Frienship From</span></dt>
+        <dd>
+            {{vm.friendship.frienshipFrom.login}}
+        </dd>
+        <dt><span data-translate="voessApp.friendship.frienshipTo">Frienship To</span></dt>
+        <dd>
+            {{vm.friendship.frienshipTo.login}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="friendshipvoess-detail.edit({id:vm.friendship.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

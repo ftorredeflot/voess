@@ -1,0 +1,25 @@
+{
+    "voessApp": {
+        "teamFormer" : {
+            "home": {
+                "title": "Team Formers",
+                "createLabel": "Create a new Team Former",
+                "createOrEditLabel": "Create or edit a Team Former",
+                "search": "Search for Team Former"
+            },
+            "created": "A new Team Former is created with identifier {{ param }}",
+            "updated": "A Team Former is updated with identifier {{ param }}",
+            "deleted": "A Team Former is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Team Former {{ id }}?"
+            },
+            "detail": {
+                "title": "Team Former"
+            },
+            "startDateTime": "Start Date Time",
+            "finshDateTime": "Finsh Date Time",
+            "player": "Player",
+            "team": "Team"
+        }
+    }
+}

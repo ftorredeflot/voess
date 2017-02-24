@@ -1,0 +1,63 @@
+<div>
+    <h2 data-translate="voessApp.game.home.title">Games</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="gamevoess.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="voessApp.game.home.createLabel">
+                        Create new Game
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="gameName"><span data-translate="voessApp.game.gameName">Game Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="gamePicture"><span data-translate="voessApp.game.gamePicture">Game Picture</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+                <tr ng-repeat="game in vm.games track by game.id">
+                    <td><a ui-sref="gamevoess-detail({id:game.id})">{{game.id}}</a></td>
+                    <td>{{game.gameName}}</td>
+                    <td>
+                        <a ng-if="game.gamePicture" ng-click="vm.openFile(game.gamePictureContentType, game.gamePicture)">
+                            <img data-ng-src="{{'data:' + game.gamePictureContentType + ';base64,' + game.gamePicture}}" style="max-height: 30px;" alt="game image"/>
+                        </a>
+                        <span ng-if="game.gamePicture">{{game.gamePictureContentType}}, {{vm.byteSize(game.gamePicture)}}</span>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="gamevoess-detail({id:game.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="gamevoess.edit({id:game.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="gamevoess.delete({id:game.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

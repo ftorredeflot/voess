@@ -1,0 +1,95 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myUserExtLabel" data-translate="voessApp.userExt.home.createOrEditLabel">Create or edit a User Ext</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.userExt.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.userExt.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="voessApp.userExt.userAge" for="field_userAge">User Age</label>
+            <input type="number" class="form-control" name="userAge" id="field_userAge"
+                    ng-model="vm.userExt.userAge"
+                    required />
+            <div ng-show="editForm.userAge.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.userAge.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.userAge.$error.number" data-translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="voessApp.userExt.userSex" for="field_userSex">User Sex</label>
+            <select class="form-control" name="userSex" ng-model="vm.userExt.userSex" id="field_userSex" required>
+                <option value="MALE" data-translate="voessApp.SexGender.MALE">MALE</option>
+                <option value="FEMALE" data-translate="voessApp.SexGender.FEMALE">FEMALE</option>
+                <option value="OTHER" data-translate="voessApp.SexGender.OTHER">OTHER</option>
+                <option value="ALIEN" data-translate="voessApp.SexGender.ALIEN">ALIEN</option>
+            </select>
+            <div ng-show="editForm.userSex.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.userSex.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setUserImage($file, vm.userExt)" ngf-pattern="'image/*'">
+            <label class="control-label" data-translate="voessApp.userExt.userImage" for="field_userImage">User Image</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.userExt.userImageContentType + ';base64,' + vm.userExt.userImage}}" style="max-height: 100px;" ng-if="vm.userExt.userImage" alt="userExt image"/>
+                <div ng-if="vm.userExt.userImage" class="help-block clearfix">
+                    <span class="pull-left">{{vm.userExt.userImageContentType}}, {{vm.byteSize(vm.userExt.userImage)}}</span>
+                    <button type="button" ng-click="vm.userExt.userImage=null;vm.userExt.userImageContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setUserImage($file, vm.userExt)" accept="image/*" data-translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="userImage" id="field_userImage"
+                    ng-model="vm.userExt.userImage"
+                    required maxbytes="5242880" />
+            <input type="hidden" class="form-control" name="userImageContentType" id="field_userImageContentType"
+                    ng-model="vm.userExt.userImageContentType" />
+            <div ng-show="editForm.userImage.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.userImage.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                   ng-show="editForm.userImage.$error.maxbytes" data-translate="entity.validation.maxbytes" translate-value-max="5242880">
+                    This field cannot be more than 5242880.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label data-translate="voessApp.userExt.user" for="field_user">User</label>
+            <select class="form-control" id="field_user" name="user" ng-model="vm.userExt.user" ng-options="user as user.id for user in vm.users track by user.id">
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

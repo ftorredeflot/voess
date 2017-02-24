@@ -1,0 +1,42 @@
+
+<div>
+    <h2><span data-translate="voessApp.tournament.detail.title">Tournament</span> {{vm.tournament.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="voessApp.tournament.tournamentName">Tournament Name</span></dt>
+        <dd>
+            <span>{{vm.tournament.tournamentName}}</span>
+        </dd>
+        <dt><span data-translate="voessApp.tournament.tournamentDate">Tournament Date</span></dt>
+        <dd>
+            <span>{{vm.tournament.tournamentDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="voessApp.tournament.tournamentImage">Tournament Image</span></dt>
+        <dd>
+            <div ng-if="vm.tournament.tournamentImage">
+                <a ng-click="vm.openFile(vm.tournament.tournamentImageContentType, vm.tournament.tournamentImage)">
+                    <img data-ng-src="{{'data:' + vm.tournament.tournamentImageContentType + ';base64,' + vm.tournament.tournamentImage}}" style="max-width: 100%;" alt="tournament image"/>
+                </a>
+                {{vm.tournament.tournamentImageContentType}}, {{vm.byteSize(vm.tournament.tournamentImage)}}
+            </div>
+        </dd>
+        <dt><span data-translate="voessApp.tournament.teamName">Team Name</span></dt>
+        <dd>
+            <span ng-repeat="teamName in vm.tournament.teamNames">
+                <a ui-sref="teamvoess-detail({id: teamName.id})">{{teamName.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="tournamentvoess-detail.edit({id:vm.tournament.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

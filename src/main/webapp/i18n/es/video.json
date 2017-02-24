@@ -1,0 +1,34 @@
+{
+    "voessApp": {
+        "video" : {
+            "home": {
+                "title": "Videos",
+                "createLabel": "Crear nuevo Video",
+                "createOrEditLabel": "Crear o editar Video",
+                "search": "Search for Video"
+            },
+            "created": "Un nuevo Video ha sido creado con el identificador {{ param }}",
+            "updated": "Un Video ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Video ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Video {{ id }}?"
+            },
+            "detail": {
+                "title": "Video"
+            },
+            "videoName": "Video Name",
+            "videoDuration": "Video Duration",
+            "videoDate": "Video Date",
+            "videoViewerCount": "Video Viewer Count",
+            "videoViewerCountLive": "Video Viewer Count Live",
+            "videoUrl": "Video Url",
+            "videoPicks": "Video Picks",
+            "videoGameStart": "Video Game Start",
+            "game": "Game",
+            "team1": "Team 1",
+            "team2": "Team 2",
+            "tournament": "Tournament",
+            "player": "Player"
+        }
+    }
+}

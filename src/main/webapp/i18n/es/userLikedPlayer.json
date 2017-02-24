@@ -1,0 +1,25 @@
+{
+    "voessApp": {
+        "userLikedPlayer" : {
+            "home": {
+                "title": "User Liked Players",
+                "createLabel": "Crear nuevo User Liked Player",
+                "createOrEditLabel": "Crear o editar User Liked Player",
+                "search": "Search for User Liked Player"
+            },
+            "created": "Un nuevo User Liked Player ha sido creado con el identificador {{ param }}",
+            "updated": "Un User Liked Player ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un User Liked Player ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar User Liked Player {{ id }}?"
+            },
+            "detail": {
+                "title": "User Liked Player"
+            },
+            "startDateTime": "Start Date Time",
+            "userLiked": "User Liked",
+            "user": "User",
+            "player": "Player"
+        }
+    }
+}

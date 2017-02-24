@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span data-translate="voessApp.userLikedVideo.detail.title">User Liked Video</span> {{vm.userLikedVideo.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="voessApp.userLikedVideo.startDateTime">Start Date Time</span></dt>
+        <dd>
+            <span>{{vm.userLikedVideo.startDateTime | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="voessApp.userLikedVideo.userLiked">User Liked</span></dt>
+        <dd>
+            <span>{{vm.userLikedVideo.userLiked}}</span>
+        </dd>
+        <dt><span data-translate="voessApp.userLikedVideo.user">User</span></dt>
+        <dd>
+            {{vm.userLikedVideo.user.login}}
+        </dd>
+        <dt><span data-translate="voessApp.userLikedVideo.video">Video</span></dt>
+        <dd>
+            <a ui-sref="videovoess-detail({id:vm.userLikedVideo.video.id})">{{vm.userLikedVideo.video.videoName}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="user-liked-videovoess-detail.edit({id:vm.userLikedVideo.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

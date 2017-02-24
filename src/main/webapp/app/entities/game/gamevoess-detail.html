@@ -1,0 +1,32 @@
+
+<div>
+    <h2><span data-translate="voessApp.game.detail.title">Game</span> {{vm.game.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="voessApp.game.gameName">Game Name</span></dt>
+        <dd>
+            <span>{{vm.game.gameName}}</span>
+        </dd>
+        <dt><span data-translate="voessApp.game.gamePicture">Game Picture</span></dt>
+        <dd>
+            <div ng-if="vm.game.gamePicture">
+                <a ng-click="vm.openFile(vm.game.gamePictureContentType, vm.game.gamePicture)">
+                    <img data-ng-src="{{'data:' + vm.game.gamePictureContentType + ';base64,' + vm.game.gamePicture}}" style="max-width: 100%;" alt="game image"/>
+                </a>
+                {{vm.game.gamePictureContentType}}, {{vm.byteSize(vm.game.gamePicture)}}
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="gamevoess-detail.edit({id:vm.game.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

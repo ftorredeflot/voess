@@ -1,0 +1,27 @@
+{
+    "voessApp": {
+        "team" : {
+            "home": {
+                "title": "Teams",
+                "createLabel": "Crear nuevo Team",
+                "createOrEditLabel": "Crear o editar Team",
+                "search": "Search for Team"
+            },
+            "created": "Un nuevo Team ha sido creado con el identificador {{ param }}",
+            "updated": "Un Team ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Team ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Team {{ id }}?"
+            },
+            "detail": {
+                "title": "Team"
+            },
+            "teamName": "Team Name",
+            "teamAvatar": "Team Avatar",
+            "teamWin": "Team Win",
+            "t1video": "T 1 Video",
+            "t2video": "T 2 Video",
+            "tournamentName": "Tournament Name"
+        }
+    }
+}

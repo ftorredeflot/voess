@@ -1,0 +1,77 @@
+<div>
+    <h2 data-translate="voessApp.player.home.title">Players</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="playervoess.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="voessApp.player.home.createLabel">
+                        Create new Player
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="playerName"><span data-translate="voessApp.player.playerName">Player Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="playerLastName"><span data-translate="voessApp.player.playerLastName">Player Last Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="playerNick"><span data-translate="voessApp.player.playerNick">Player Nick</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="playerAge"><span data-translate="voessApp.player.playerAge">Player Age</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="playerImage"><span data-translate="voessApp.player.playerImage">Player Image</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="playerSex"><span data-translate="voessApp.player.playerSex">Player Sex</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="playerScore"><span data-translate="voessApp.player.playerScore">Player Score</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="country.countryName"><span data-translate="voessApp.player.country">Country</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+                <tr ng-repeat="player in vm.players track by player.id">
+                    <td><a ui-sref="playervoess-detail({id:player.id})">{{player.id}}</a></td>
+                    <td>{{player.playerName}}</td>
+                    <td>{{player.playerLastName}}</td>
+                    <td>{{player.playerNick}}</td>
+                    <td>{{player.playerAge}}</td>
+                    <td>
+                        <a ng-if="player.playerImage" ng-click="vm.openFile(player.playerImageContentType, player.playerImage)">
+                            <img data-ng-src="{{'data:' + player.playerImageContentType + ';base64,' + player.playerImage}}" style="max-height: 30px;" alt="player image"/>
+                        </a>
+                        <span ng-if="player.playerImage">{{player.playerImageContentType}}, {{vm.byteSize(player.playerImage)}}</span>
+                    </td>
+                    <td data-translate="{{'voessApp.SexGender.' + player.playerSex}}">{{player.playerSex}}</td>
+                    <td>{{player.playerScore}}</td>
+                    <td>
+                        <a ui-sref="countryvoess-detail({id:player.country.id})">{{player.country.countryName}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="playervoess-detail({id:player.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="playervoess.edit({id:player.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="playervoess.delete({id:player.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

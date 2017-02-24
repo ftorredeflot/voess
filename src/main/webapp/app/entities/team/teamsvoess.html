@@ -1,0 +1,65 @@
+<div>
+    <h2 data-translate="voessApp.team.home.title">Teams</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="teamvoess.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="voessApp.team.home.createLabel">
+                        Create new Team
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="teamName"><span data-translate="voessApp.team.teamName">Team Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="teamAvatar"><span data-translate="voessApp.team.teamAvatar">Team Avatar</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="teamWin"><span data-translate="voessApp.team.teamWin">Team Win</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+                <tr ng-repeat="team in vm.teams track by team.id">
+                    <td><a ui-sref="teamvoess-detail({id:team.id})">{{team.id}}</a></td>
+                    <td>{{team.teamName}}</td>
+                    <td>
+                        <a ng-if="team.teamAvatar" ng-click="vm.openFile(team.teamAvatarContentType, team.teamAvatar)">
+                            <img data-ng-src="{{'data:' + team.teamAvatarContentType + ';base64,' + team.teamAvatar}}" style="max-height: 30px;" alt="team image"/>
+                        </a>
+                        <span ng-if="team.teamAvatar">{{team.teamAvatarContentType}}, {{vm.byteSize(team.teamAvatar)}}</span>
+                    </td>
+                    <td>{{team.teamWin}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="teamvoess-detail({id:team.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="teamvoess.edit({id:team.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="teamvoess.delete({id:team.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

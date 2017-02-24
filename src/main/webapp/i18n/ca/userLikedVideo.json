@@ -1,0 +1,25 @@
+{
+    "voessApp": {
+        "userLikedVideo" : {
+            "home": {
+                "title": "User Liked Videos",
+                "createLabel": "Create a new User Liked Video",
+                "createOrEditLabel": "Create or edit a User Liked Video",
+                "search": "Search for User Liked Video"
+            },
+            "created": "A new User Liked Video is created with identifier {{ param }}",
+            "updated": "A User Liked Video is updated with identifier {{ param }}",
+            "deleted": "A User Liked Video is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete User Liked Video {{ id }}?"
+            },
+            "detail": {
+                "title": "User Liked Video"
+            },
+            "startDateTime": "Start Date Time",
+            "userLiked": "User Liked",
+            "user": "User",
+            "video": "Video"
+        }
+    }
+}

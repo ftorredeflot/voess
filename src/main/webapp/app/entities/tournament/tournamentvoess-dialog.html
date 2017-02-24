@@ -1,0 +1,68 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myTournamentLabel" data-translate="voessApp.tournament.home.createOrEditLabel">Create or edit a Tournament</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.tournament.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.tournament.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="voessApp.tournament.tournamentName" for="field_tournamentName">Tournament Name</label>
+            <input type="text" class="form-control" name="tournamentName" id="field_tournamentName"
+                    ng-model="vm.tournament.tournamentName"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="voessApp.tournament.tournamentDate" for="field_tournamentDate">Tournament Date</label>
+                <div class="input-group">
+                    <input id="field_tournamentDate" type="text" class="form-control" name="tournamentDate" datetime-picker="{{dateformat}}" ng-model="vm.tournament.tournamentDate" is-open="vm.datePickerOpenStatus.tournamentDate"
+                      />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('tournamentDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setTournamentImage($file, vm.tournament)" ngf-pattern="'image/*'">
+            <label class="control-label" data-translate="voessApp.tournament.tournamentImage" for="field_tournamentImage">Tournament Image</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.tournament.tournamentImageContentType + ';base64,' + vm.tournament.tournamentImage}}" style="max-height: 100px;" ng-if="vm.tournament.tournamentImage" alt="tournament image"/>
+                <div ng-if="vm.tournament.tournamentImage" class="help-block clearfix">
+                    <span class="pull-left">{{vm.tournament.tournamentImageContentType}}, {{vm.byteSize(vm.tournament.tournamentImage)}}</span>
+                    <button type="button" ng-click="vm.tournament.tournamentImage=null;vm.tournament.tournamentImageContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setTournamentImage($file, vm.tournament)" accept="image/*" data-translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="tournamentImage" id="field_tournamentImage"
+                    ng-model="vm.tournament.tournamentImage"
+                     />
+            <input type="hidden" class="form-control" name="tournamentImageContentType" id="field_tournamentImageContentType"
+                    ng-model="vm.tournament.tournamentImageContentType" />
+        </div>
+
+        <div class="form-group">
+            <label data-translate="voessApp.tournament.teamName" for="field_teamName">Team Name</label>
+            <select class="form-control" id="field_teamName" multiple name="teamName" ng-model="vm.tournament.teamNames" ng-options="team as team.id for team in vm.teams track by team.id"></select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

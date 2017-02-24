@@ -1,0 +1,60 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myTeamLabel" data-translate="voessApp.team.home.createOrEditLabel">Create or edit a Team</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.team.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.team.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="voessApp.team.teamName" for="field_teamName">Team Name</label>
+            <input type="text" class="form-control" name="teamName" id="field_teamName"
+                    ng-model="vm.team.teamName"
+                     />
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setTeamAvatar($file, vm.team)" ngf-pattern="'image/*'">
+            <label class="control-label" data-translate="voessApp.team.teamAvatar" for="field_teamAvatar">Team Avatar</label>
+            <div>
+                <img data-ng-src="{{'data:' + vm.team.teamAvatarContentType + ';base64,' + vm.team.teamAvatar}}" style="max-height: 100px;" ng-if="vm.team.teamAvatar" alt="team image"/>
+                <div ng-if="vm.team.teamAvatar" class="help-block clearfix">
+                    <span class="pull-left">{{vm.team.teamAvatarContentType}}, {{vm.byteSize(vm.team.teamAvatar)}}</span>
+                    <button type="button" ng-click="vm.team.teamAvatar=null;vm.team.teamAvatarContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setTeamAvatar($file, vm.team)" accept="image/*" data-translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="teamAvatar" id="field_teamAvatar"
+                    ng-model="vm.team.teamAvatar"
+                     />
+            <input type="hidden" class="form-control" name="teamAvatarContentType" id="field_teamAvatarContentType"
+                    ng-model="vm.team.teamAvatarContentType" />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="voessApp.team.teamWin" for="field_teamWin">Team Win</label>
+            <input type="number" class="form-control" name="teamWin" id="field_teamWin"
+                    ng-model="vm.team.teamWin"
+                     />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

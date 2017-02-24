@@ -1,0 +1,106 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myVideoLabel" data-translate="voessApp.video.home.createOrEditLabel">Create or edit a Video</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.video.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.video.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="voessApp.video.videoName" for="field_videoName">Video Name</label>
+            <input type="text" class="form-control" name="videoName" id="field_videoName"
+                    ng-model="vm.video.videoName"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="voessApp.video.videoDuration" for="field_videoDuration">Video Duration</label>
+            <input type="number" class="form-control" name="videoDuration" id="field_videoDuration"
+                    ng-model="vm.video.videoDuration"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="voessApp.video.videoDate" for="field_videoDate">Video Date</label>
+                <div class="input-group">
+                    <input id="field_videoDate" type="text" class="form-control" name="videoDate" datetime-picker="{{dateformat}}" ng-model="vm.video.videoDate" is-open="vm.datePickerOpenStatus.videoDate"
+                      />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('videoDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="voessApp.video.videoViewerCount" for="field_videoViewerCount">Video Viewer Count</label>
+            <input type="number" class="form-control" name="videoViewerCount" id="field_videoViewerCount"
+                    ng-model="vm.video.videoViewerCount"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="voessApp.video.videoViewerCountLive" for="field_videoViewerCountLive">Video Viewer Count Live</label>
+            <input type="number" class="form-control" name="videoViewerCountLive" id="field_videoViewerCountLive"
+                    ng-model="vm.video.videoViewerCountLive"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="voessApp.video.videoUrl" for="field_videoUrl">Video Url</label>
+            <input type="text" class="form-control" name="videoUrl" id="field_videoUrl"
+                    ng-model="vm.video.videoUrl"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="voessApp.video.videoPicks" for="field_videoPicks">Video Picks</label>
+            <input type="number" class="form-control" name="videoPicks" id="field_videoPicks"
+                    ng-model="vm.video.videoPicks"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="voessApp.video.videoGameStart" for="field_videoGameStart">Video Game Start</label>
+            <input type="number" class="form-control" name="videoGameStart" id="field_videoGameStart"
+                    ng-model="vm.video.videoGameStart"
+                     />
+        </div>
+
+        <div class="form-group">
+            <label data-translate="voessApp.video.game" for="field_game">Game</label>
+            <select class="form-control" id="field_game" name="game" ng-model="vm.video.game" ng-options="game as game.gameName for game in vm.games track by game.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="voessApp.video.team1" for="field_team1">Team 1</label>
+            <select class="form-control" id="field_team1" name="team1" ng-model="vm.video.team1" ng-options="team as team.teamName for team in vm.teams track by team.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="voessApp.video.team2" for="field_team2">Team 2</label>
+            <select class="form-control" id="field_team2" name="team2" ng-model="vm.video.team2" ng-options="team as team.teamName for team in vm.teams track by team.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="voessApp.video.tournament" for="field_tournament">Tournament</label>
+            <select class="form-control" id="field_tournament" name="tournament" ng-model="vm.video.tournament" ng-options="tournament as tournament.tournamentName for tournament in vm.tournaments track by tournament.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="voessApp.video.player" for="field_player">Player</label>
+            <select class="form-control" id="field_player" multiple name="player" ng-model="vm.video.players" ng-options="player as player.id for player in vm.players track by player.id"></select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

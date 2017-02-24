@@ -1,0 +1,25 @@
+{
+    "voessApp": {
+        "friendship" : {
+            "home": {
+                "title": "Friendships",
+                "createLabel": "Create a new Friendship",
+                "createOrEditLabel": "Create or edit a Friendship",
+                "search": "Search for Friendship"
+            },
+            "created": "A new Friendship is created with identifier {{ param }}",
+            "updated": "A Friendship is updated with identifier {{ param }}",
+            "deleted": "A Friendship is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Friendship {{ id }}?"
+            },
+            "detail": {
+                "title": "Friendship"
+            },
+            "startDateTime": "Start Date Time",
+            "finishDateTime": "Finish Date Time",
+            "frienshipFrom": "Frienship From",
+            "frienshipTo": "Frienship To"
+        }
+    }
+}

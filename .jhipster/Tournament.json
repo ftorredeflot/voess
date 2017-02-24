@@ -1,0 +1,40 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "tournamentName",
+            "relationshipName": "teamName",
+            "otherEntityName": "team",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "video",
+            "otherEntityName": "video",
+            "otherEntityRelationshipName": "tournament"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "tournamentName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "tournamentDate",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "tournamentImage",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        }
+    ],
+    "changelogDate": "20170224165259",
+    "entityTableName": "tournament",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "angularJSSuffix": "voess"
+}

@@ -1,0 +1,25 @@
+{
+    "voessApp": {
+        "teamFormer" : {
+            "home": {
+                "title": "Team Formers",
+                "createLabel": "Crear nuevo Team Former",
+                "createOrEditLabel": "Crear o editar Team Former",
+                "search": "Search for Team Former"
+            },
+            "created": "Un nuevo Team Former ha sido creado con el identificador {{ param }}",
+            "updated": "Un Team Former ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Team Former ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Team Former {{ id }}?"
+            },
+            "detail": {
+                "title": "Team Former"
+            },
+            "startDateTime": "Start Date Time",
+            "finshDateTime": "Finsh Date Time",
+            "player": "Player",
+            "team": "Team"
+        }
+    }
+}

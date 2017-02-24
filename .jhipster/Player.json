@@ -1,0 +1,56 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "country",
+            "otherEntityName": "country",
+            "otherEntityField": "countryName"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "video",
+            "otherEntityName": "video",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "player"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "playerName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "playerLastName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "playerNick",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "playerAge",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "playerImage",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "playerSex",
+            "fieldType": "SexGender",
+            "fieldValues": "MALE,FEMALE,OTHER,ALIEN"
+        },
+        {
+            "fieldName": "playerScore",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20170224165200",
+    "entityTableName": "player",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "angularJSSuffix": "voess"
+}

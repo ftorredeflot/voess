@@ -1,0 +1,69 @@
+<div>
+    <h2 data-translate="voessApp.userExt.home.title">User Exts</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="user-extvoess.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="voessApp.userExt.home.createLabel">
+                        Create new User Ext
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.reset()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="userAge"><span data-translate="voessApp.userExt.userAge">User Age</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="userSex"><span data-translate="voessApp.userExt.userSex">User Sex</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="userImage"><span data-translate="voessApp.userExt.userImage">User Image</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="user.id"><span data-translate="voessApp.userExt.user">User</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody infinite-scroll="vm.loadPage(vm.page + 1)" infinite-scroll-disabled="vm.page >= vm.links['last']">
+                <tr ng-repeat="userExt in vm.userExts track by userExt.id">
+                    <td><a ui-sref="user-extvoess-detail({id:userExt.id})">{{userExt.id}}</a></td>
+                    <td>{{userExt.userAge}}</td>
+                    <td data-translate="{{'voessApp.SexGender.' + userExt.userSex}}">{{userExt.userSex}}</td>
+                    <td>
+                        <a ng-if="userExt.userImage" ng-click="vm.openFile(userExt.userImageContentType, userExt.userImage)">
+                            <img data-ng-src="{{'data:' + userExt.userImageContentType + ';base64,' + userExt.userImage}}" style="max-height: 30px;" alt="userExt image"/>
+                        </a>
+                        <span ng-if="userExt.userImage">{{userExt.userImageContentType}}, {{vm.byteSize(userExt.userImage)}}</span>
+                    </td>
+                    <td>
+                        {{userExt.user.id}}
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="user-extvoess-detail({id:userExt.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="user-extvoess.edit({id:userExt.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="user-extvoess.delete({id:userExt.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
