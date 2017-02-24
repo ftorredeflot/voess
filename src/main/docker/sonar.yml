@@ -1,0 +1,8 @@
+version: '2'
+services:
+    voess-sonar:
+        container_name: voess-sonar
+        image: sonarqube:6.1-alpine
+        ports:
+            - 9000:9000
+            - 9092:9092
