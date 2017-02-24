@@ -1,0 +1,147 @@
+
+
+entity UserExt {
+	userAge Integer required,
+    userSex SexGender required,
+    userImage ImageBlob required maxbytes(5242880)
+}
+entity Video{
+	videoName String ,
+    videoDuration Integer ,
+    videoDate ZonedDateTime ,
+    videoViewerCount Integer ,
+    videoViewerCountLive Integer ,
+    videoUrl String ,    
+	videoPicks Integer ,
+    videoGameStart Integer 
+    
+   	}
+    
+entity Team {
+
+	teamName String,
+    teamAvatar ImageBlob,
+    teamWin Integer  
+}
+  
+entity Tournament{
+tournamentName String,
+tournamentDate ZonedDateTime,
+tournamentImage ImageBlob 
+}  
+
+entity Player{
+ playerName String,
+  playerLastName String,
+  playerNick String,
+  playerAge Integer,
+  playerImage ImageBlob,
+  playerSex SexGender,
+  playerScore Integer
+}
+
+
+
+entity Country {
+	countryName String,
+    coutryFlag ImageBlob
+    }
+
+
+entity Game{
+	gameName String,
+    gamePicture ImageBlob
+}
+/** Enums**/
+enum SexGender {
+MALE, FEMALE, OTHER, ALIEN
+}
+/**entidades asocitivas **/
+entity Friendship {
+	startDateTime ZonedDateTime required,
+    finishDateTime ZonedDateTime required
+    }
+    
+entity UserLikedVideo {
+startDateTime ZonedDateTime required,
+userLiked Boolean required
+}
+ 
+ entity UserLikedPlayer {
+startDateTime ZonedDateTime required,
+userLiked Boolean required
+}
+
+entity UserLikedTeams {
+startDateTime ZonedDateTime required,
+userLiked Boolean required
+}
+
+entity TeamFormer{
+	startDateTime ZonedDateTime,
+    finshDateTime ZonedDateTime 
+}
+/**Relaciones**/
+/**relaciones amistat**/
+relationship ManyToOne {
+	Friendship{frienshipFrom(login)} to User,
+	Friendship{frienshipTo(login)} to User
+}
+/** fin relaciones amistad**/
+/** relaciones like video**/
+relationship ManyToOne {
+UserLikedVideo{user(login)} to User,
+UserLikedVideo{video(videoName)} to Video
+}
+/** fin relaciones like video**/
+/** relaciones like player**/
+relationship ManyToOne {
+UserLikedPlayer{user(login)} to User,
+UserLikedPlayer{player(playerName)} to Player
+}
+
+relationship ManyToOne {
+Video{game(gameName)} to Game{video}
+}
+
+/** fin relaciones player**/
+relationship ManyToOne {
+UserLikedTeams{user(login)} to User,
+UserLikedTeams{team(teamName)} to Team
+}
+
+
+relationship ManyToOne {
+	Video{team1(teamName)} to Team{t1video},
+    Video{team2(teamName)} to Team{t2video}
+}
+
+relationship ManyToMany {
+	Video{player} to Player{video}
+}
+
+
+relationship ManyToOne {
+	TeamFormer{player(playerName)} to Player,
+	TeamFormer{team(teamName)} to Team
+}
+relationship ManyToMany {
+	Tournament{teamName} to Team{tournamentName}
+}
+
+relationship ManyToOne {
+Player{country(countryName)} to Country{player} 
+}
+
+relationship ManyToOne{
+Video{tournament(tournamentName)} to Tournament{video} 
+}
+
+relationship OneToOne{
+UserExt{user} to User{userExt}
+}
+
+
+paginate all with infinite-scroll
+
+angularSuffix * with voess
