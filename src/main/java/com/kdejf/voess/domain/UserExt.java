@@ -25,12 +25,12 @@ public class UserExt implements Serializable {
     @Column(name = "user_age", nullable = false)
     private Integer userAge;
 
-    @NotNull
+
     @Enumerated(EnumType.STRING)
     @Column(name = "user_sex", nullable = false)
     private SexGender userSex;
 
-    @NotNull
+
     @Size(max = 5242880)
     @Lob
     @Column(name = "user_image", nullable = false)

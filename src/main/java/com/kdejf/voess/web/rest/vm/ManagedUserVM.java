@@ -26,6 +26,8 @@ public class ManagedUserVM extends UserDTO {
 
     private ZonedDateTime lastModifiedDate;
 
+    private Integer age;
+
     @Size(min = PASSWORD_MIN_LENGTH, max = PASSWORD_MAX_LENGTH)
     private String password;
 
@@ -62,6 +64,17 @@ public class ManagedUserVM extends UserDTO {
         this.id = id;
     }
 
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getCreatedBy() {
         return createdBy;
