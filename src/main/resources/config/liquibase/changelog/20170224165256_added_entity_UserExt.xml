@@ -27,22 +27,22 @@
             <column name="user_age" type="integer">
                 <constraints nullable="false" />
             </column>
-            
+
             <column name="user_sex" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
-            
+
             <column name="user_image" type="longblob">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
             <column name="user_image_content_type" type="varchar(255)">
-                <constraints nullable="false" />
+                <constraints nullable="true" />
             </column>
                         <column name="user_id" type="bigint">
                 <constraints unique="true" nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        
+
     </changeSet>
 </databaseChangeLog>

@@ -2,8 +2,10 @@ package com.kdejf.voess.service;
 
 import com.kdejf.voess.domain.Authority;
 import com.kdejf.voess.domain.User;
+import com.kdejf.voess.domain.UserExt;
 import com.kdejf.voess.repository.AuthorityRepository;
 import com.kdejf.voess.repository.PersistentTokenRepository;
+import com.kdejf.voess.repository.UserExtRepository;
 import com.kdejf.voess.repository.UserRepository;
 import com.kdejf.voess.security.AuthoritiesConstants;
 import com.kdejf.voess.security.SecurityUtils;
@@ -38,6 +40,9 @@ public class UserService {
 
     @Inject
     private UserRepository userRepository;
+
+    @Inject
+    private UserExtRepository userExtRepository;
 
     @Inject
     private PersistentTokenRepository persistentTokenRepository;
@@ -84,7 +89,7 @@ public class UserService {
     }
 
     public User createUser(String login, String password, String firstName, String lastName, String email,
-        String langKey) {
+                           String langKey) {
 
         User newUser = new User();
         Authority authority = authorityRepository.findOne(AuthoritiesConstants.USER);
@@ -107,6 +112,8 @@ public class UserService {
         log.debug("Created Information for User: {}", newUser);
         return newUser;
     }
+
+
 
     public User createUser(ManagedUserVM managedUserVM) {
         User user = new User();
@@ -241,5 +248,36 @@ public class UserService {
             log.debug("Deleting not activated user {}", user.getLogin());
             userRepository.delete(user);
         }
+    }
+
+    public User createUser(String login, String password, String firstName, String lastName, String email, String langKey, Integer age) {
+        User newUser = new User();
+        Authority authority = authorityRepository.findOne(AuthoritiesConstants.USER);
+        Set<Authority> authorities = new HashSet<>();
+        String encryptedPassword = passwordEncoder.encode(password);
+        newUser.setLogin(login);
+        // new user gets initially a generated password
+        newUser.setPassword(encryptedPassword);
+        newUser.setFirstName(firstName);
+        newUser.setLastName(lastName);
+        newUser.setEmail(email);
+        newUser.setLangKey(langKey);
+        // new user is not active
+        newUser.setActivated(false);
+        // new user gets registration key
+        newUser.setActivationKey(RandomUtil.generateActivationKey());
+        authorities.add(authority);
+        newUser.setAuthorities(authorities);
+        userRepository.save(newUser);
+        log.debug("Created Information for User: {}", newUser);
+
+
+        UserExt userExt = new UserExt();
+        userExt.setUser(newUser);
+        userExt.setUserAge(age);
+        log.debug("Created Information for UserExtra: {}", userExt);
+
+        userExtRepository.save(userExt);
+        return newUser;
     }
 }

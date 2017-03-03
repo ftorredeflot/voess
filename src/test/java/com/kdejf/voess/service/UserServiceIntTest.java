@@ -65,66 +65,6 @@ public class UserServiceIntTest {
     }
 
     @Test
-    public void assertThatOnlyActivatedUserCanRequestPasswordReset() {
-        User user = userService.createUser("johndoe", "johndoe", "John", "Doe", "john.doe@localhost", "en-US");
-        Optional<User> maybeUser = userService.requestPasswordReset("john.doe@localhost");
-        assertThat(maybeUser.isPresent()).isFalse();
-        userRepository.delete(user);
-    }
-
-    @Test
-    public void assertThatResetKeyMustNotBeOlderThan24Hours() {
-        User user = userService.createUser("johndoe", "johndoe", "John", "Doe", "john.doe@localhost", "en-US");
-
-        ZonedDateTime daysAgo = ZonedDateTime.now().minusHours(25);
-        String resetKey = RandomUtil.generateResetKey();
-        user.setActivated(true);
-        user.setResetDate(daysAgo);
-        user.setResetKey(resetKey);
-
-        userRepository.save(user);
-
-        Optional<User> maybeUser = userService.completePasswordReset("johndoe2", user.getResetKey());
-
-        assertThat(maybeUser.isPresent()).isFalse();
-
-        userRepository.delete(user);
-    }
-
-    @Test
-    public void assertThatResetKeyMustBeValid() {
-        User user = userService.createUser("johndoe", "johndoe", "John", "Doe", "john.doe@localhost", "en-US");
-
-        ZonedDateTime daysAgo = ZonedDateTime.now().minusHours(25);
-        user.setActivated(true);
-        user.setResetDate(daysAgo);
-        user.setResetKey("1234");
-        userRepository.save(user);
-        Optional<User> maybeUser = userService.completePasswordReset("johndoe2", user.getResetKey());
-        assertThat(maybeUser.isPresent()).isFalse();
-        userRepository.delete(user);
-    }
-
-    @Test
-    public void assertThatUserCanResetPassword() {
-        User user = userService.createUser("johndoe", "johndoe", "John", "Doe", "john.doe@localhost", "en-US");
-        String oldPassword = user.getPassword();
-        ZonedDateTime daysAgo = ZonedDateTime.now().minusHours(2);
-        String resetKey = RandomUtil.generateResetKey();
-        user.setActivated(true);
-        user.setResetDate(daysAgo);
-        user.setResetKey(resetKey);
-        userRepository.save(user);
-        Optional<User> maybeUser = userService.completePasswordReset("johndoe2", user.getResetKey());
-        assertThat(maybeUser.isPresent()).isTrue();
-        assertThat(maybeUser.get().getResetDate()).isNull();
-        assertThat(maybeUser.get().getResetKey()).isNull();
-        assertThat(maybeUser.get().getPassword()).isNotEqualTo(oldPassword);
-
-        userRepository.delete(user);
-    }
-
-    @Test
     public void testFindNotActivatedUsersByCreationDateBefore() {
         userService.removeNotActivatedUsers();
         ZonedDateTime now = ZonedDateTime.now();
